@@ -1,0 +1,390 @@
+@charset "UTF-8";
+body {
+	overflow-x: hidden; 
+	overflow-y: auto 
+}
+.admin-navbar-color{
+	background-color:#a9c6e3;
+}
+:root{
+	--sig-color:#a9d2b4;
+	--wrap-max-width:1200px;
+}
+.main_board_naming{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.list-title-naming{
+	max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 10px 0;
+}
+.content-textarea:focus{
+	outline:none;
+}
+.content-textarea{
+	resize:none;
+	border:0;
+}
+.btn-outline-dccc{
+	color:black;
+	font-weight:700;
+}
+
+.btn-outline-dccc:hover{
+	color:var(--sig-color);
+	font-weight:900;
+}
+.replies-btn{
+	background-color:var(--sig-color);
+	border-radius: 4px;
+    display: inline-block;
+    font-weight: 600;
+    padding: 5px;
+    margin-top:5px;
+    color:white;
+}
+.footer-bg{
+	background-color:var(--sig-color);
+	margin-bottom: -15px;
+}
+.page_bg_dccc{
+	background-color:var(--sig-color);
+	color:white;
+	font-weight: bold;
+}
+.font-black{
+	color:black;
+}
+
+.font-black:hover{
+	color:inherit;
+}
+.font-dccc{
+	color:var(--sig-color);
+}
+.font-dccc:hover{
+	color:var(--sig-color);
+	font-weight: bold;
+}
+.sub-footer{
+	margin-top:0.5px;
+}
+.sub-footer-content{
+	padding:0 1rem;
+	color:#869099;
+}
+
+.main-content-header{
+	background-color:#dfdfdf;
+	height:2rem;
+	line-height:2rem;
+}
+
+.aside-naming{
+	border-bottom:1px solid black;
+	margin-bottom:5px;
+	font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.login-header{
+	display:flex;
+	margin:0 auto;
+  	width:auto;
+  	max-width:var(--wrap-max-width);
+}
+.photo_picture_size{
+	width:100%;
+	height:170px;
+	display:block;
+	margin:0 auto;
+}
+.grow-1{
+	flex-grow:1;
+}
+.w-5rem{
+	width:5rem;
+}
+
+.btn-white{
+	color:white;
+}
+.btn-white:hover{
+	color:#6c757d;
+}
+.btn-dccc{
+	background-color:var(--sig-color);
+	color:white;
+}
+.btn-original:hover{
+	background-color:var(--sig-color);
+	color:white;
+}
+.wrap-m-w{
+	max-width:var(--wrap-max-width);
+}
+
+.user-admin-select-box{
+	width: 100%;
+    margin-bottom: 10px;
+}
+
+.m-50-a-50-a{
+	margin: 50px auto 50px auto;
+}
+.border-dccc-opacity{
+	border:1px solid rgba(169, 210, 180, 0.3);
+}
+.main-center-content-main{
+	font-weight: bolder;
+}
+.login-header-font{
+	color:var(--sig-color);
+	font-weight: bolder;
+	font-size: 1.5rem;
+}
+.width-500{
+	width:500px;
+}
+.r-0{
+	right:0;
+}
+.t-32-r-0{
+	top:32px;
+	right:0;
+}
+
+.c-red{
+	color:red;
+	font-weight: bold;
+}
+.c-dccc{
+	color:var(--sig-color);
+	font-weight: bold;
+}
+.ml-minus-40{
+	margin-left:-40px;
+}
+.p-1_25{
+	padding: 0 1.25rem;
+}
+.aside_menu{
+	padding-left:0;
+}
+.aside_menu>div,.aside_menu>button{
+	width:calc(100% - 1.25rem);
+}
+.admin_mode{
+	color: white;
+    line-height: 37px;
+    width: 240px;
+    text-align: center;
+    font-weight: bolder;
+}
+.td_limit_size{
+	text-align:left;
+	max-width: 100px; 
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.word-break-all{
+	word-break: break-all;
+}
+.w-6r{
+	width:6rem;
+}
+.mr-18p{
+	margin-right:18px;
+}
+.min-40{
+	min-height:40px;
+}
+.min-300{
+	min-height:300px;
+}
+.min-w-4r{
+	min-width:4rem;
+}
+.regist-textarea{
+	height: 300px;
+    resize: none;
+}
+.regist-div{
+	min-height: 300px;
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	height:auto;
+}
+.notice_import_bg{
+	background-color:rgb(190 186 186 / 24%);
+}
+
+.rental_row{
+  list-style-type: none;
+    white-space: nowrap;
+  max-height: 570px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+.rental-status-inner{
+  position: relative;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    transition:0.5s;
+}
+.rental_cell{
+  margin-bottom: 10px;
+}
+.rental-status-inner:hover{
+  border:1px solid var(--sig-color);
+  background-color:#d0bdbd2b;
+}
+.rental-status-inner-hover{
+	border:1px solid var(--sig-color);
+  background-color:#d0bdbd2b;
+}
+.rental-status-inner-hover .state{
+	background-color:var(--sig-color);
+}
+.rental-status-inner:hover .state{
+  background-color:var(--sig-color);
+}
+.rental_img_box{
+      border-radius: 10px;
+    overflow: hidden;
+    background-color: #dfdfdf;
+    width: 125px;
+    margin-right: 15px;
+  height:100px;
+    flex: none;
+  bprder:1px solid red;
+      position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.rental_name_box{
+      flex: 1;
+}
+.info{
+      flex: 1;
+}
+.tit-box{
+  display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.tit{
+      font-size: 18px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+}
+.color-box{
+      font-size: 18px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+}
+.cancle-bg{
+  background-color: rgba(0,0,0,0.46) !important;
+}
+.state{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ccc;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.2;
+    width: 120px;
+    height: 40px;
+    transition:.5s;
+}
+.back_btn{
+	font-weight: 700; 
+	font-size: 1.2rem;
+	color:#59605c;
+	cursor: pointer;
+}
+.back_btn:hover{
+	color:var(--sig-color);
+}
+
+
+
+.dccc_calendar{
+	width:600px;
+	margin:50px;
+}
+.cal_header{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.cal_year-month{
+	font-size:35px;
+}
+
+.cal_nav{
+	display: :flex;
+	border:1px solid #333333;
+	border-radius: 5px;
+}
+.cal_nav-btn{
+	width:28px;
+	height:30px;
+	border:none;
+	font-size: 16px;
+	line-height: 34px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.go-today{
+	width:75px;
+	border-left: 1px solid #333333;
+	border-right: 1px solid #333333;
+}
+
+.time_list{
+		list-style: none;
+		background-color:#ffffff;
+		color:black; 
+}
+.time_list:hover{
+	background-color:var(--sig-color);
+}
+.time_list:hover a{
+	color:white;
+}
+.time_list.time_list_selected{
+	background-color:gray;
+}
+.time_list.time_list_selected a{
+	color:white;
+}
+

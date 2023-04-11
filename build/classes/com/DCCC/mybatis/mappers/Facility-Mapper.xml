@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="Facility-Mapper">
+	<sql id="search">
+		<if test="searchType == 'nm'.toString()">
+			and fac_name like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'qf'.toString()">
+			and fac_qufen like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'fl'.toString()">
+			and fac_floor like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+
+ <select id="selectSearchFacilityList2" resultType="facility">
+ 	select
+  	*
+  	from facility
+  	where fac_no is not null
+   	<include refid="search"/>
+   	order by case when fac_kind = 3 then 2
+    when fac_kind = 1 then 3
+    else 1
+    end desc
+    , fac_no desc
+  </select>
+
+
+  <select id="selectSearchFacilityList" resultType="facilitywithpriceview">
+  	select *
+	from facilitywithpriceview
+ 	</select>
+  
+  	<select id="selectSearchFacilityListCount" resultType="int">
+		select
+		count(*) 
+		from facility
+		where fac_no is not null
+	</select>
+  
+  
+  	<select id="selectSearchFacility" resultType="facility" parameterType="str">  <!-- byId -->
+		select
+		*
+		from facility
+		where fac_no=#{fac_no}
+	</select>
+  
+  <select id="selectFacilityByFac_no" parameterType="str" resultType="facility">
+  	select
+  	*
+  	from facility
+  	where fac_no=#{fac_no}
+  </select>
+  
+  <update id="insertFacility" parameterType="facility">
+  	insert into
+  	facility(fac_no, fac_picture, fac_capacity, fac_floor, fac_introduce, fac_name, fac_size, fac_kind, fac_qufen, fac_category)
+  	values((select 'DC'||to_char((to_number(max(substr(fac_no,3)))+1),'fm0000') from facility), #{fac_picture}, #{fac_capacity}, #{fac_floor}, #{fac_introduce}, #{fac_name}, #{fac_size}, 1, #{fac_qufen}, #{fac_category})
+  </update>
+  
+  <update id="updateFacility" parameterType="facility" >
+  	update facility
+  	set
+  	fac_picture=#{fac_picture}, fac_capacity=#{fac_capacity}, fac_floor=#{fac_floor}, fac_introduce=#{fac_introduce}, fac_name=#{fac_name}, fac_size=#{fac_size}, fac_kind=#{fac_kind}, fac_qufen=#{fac_qufen}, fac_category=#{fac_category}
+  	where fac_no=#{fac_no}
+  </update>
+  
+  <update id="deleteFacility" parameterType="str">
+  	delete
+  	from facility
+  	where fac_no=#{fac_no}
+  </update>
+  
+  
+  
+</mapper>

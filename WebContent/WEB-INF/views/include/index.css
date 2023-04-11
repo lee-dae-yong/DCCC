@@ -1,0 +1,144 @@
+@charset "UTF-8";
+:root{
+	--sig-color:#a9d2b4;
+	--wrap-max-width:1200px;
+}
+.btn-outline-dccc{
+	color:black;
+	font-weight:700;
+}
+
+.btn-outline-dccc:hover{
+	color:var(--sig-color);
+	font-weight:900;
+}
+
+.footer-bg{
+	background-color:var(--sig-color);
+	margin-bottom: -15px;
+}
+
+.font-black{
+	color:black;
+}
+
+.font-black:hover{
+	color:inherit;
+}
+.font-dccc{
+	color:var(--sig-color);
+}
+.font-dccc:hover{
+	color:var(--sig-color);
+	font-weight: bold;
+}
+.sub-footer{
+	margin-top:0.5px;
+}
+.sub-footer-content{
+	padding:0 1rem;
+	color:#869099;
+}
+
+.main-content-header{
+	background-color:#dfdfdf;
+	height:2rem;
+	line-height:2rem;
+}
+
+.aside-naming{
+	border-bottom:1px solid black;
+	margin-bottom:5px;
+	font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.login-header{
+	display:flex;
+	margin:0 auto;
+  	width:auto;
+  	max-width:var(--wrap-max-width);
+}
+
+.grow-1{
+	flex-grow:1;
+}
+.w-5rem{
+	width:5rem;
+}
+
+.btn-white{
+	color:white;
+}
+.btn-white:hover{
+	color:#6c757d;
+}
+.btn-dccc{
+	background-color:var(--sig-color);
+	color:white;
+}
+.btn-original:hover{
+	background-color:var(--sig-color);
+	color:white;
+}
+.wrap-m-w{
+	max-width:var(--wrap-max-width);
+}
+
+.user-admin-select-box{
+	width: 100%;
+    margin-bottom: 10px;
+}
+
+.m-50-a-50-a{
+	margin: 50px auto 50px auto;
+}
+.border-dccc-opacity{
+	border:1px solid rgba(169, 210, 180, 0.3);
+}
+.main-center-content-main{
+	font-weight: bolder;
+}
+.login-header-font{
+	color:var(--sig-color);
+	font-weight: bolder;
+	font-size: 1.5rem;
+}
+.width-500{
+	width:500px;
+}
+.r-0{
+	right:0;
+}
+.t-32-r-0{
+	top:32px;
+	right:0;
+}
+
+.c-red{
+	color:red;
+	font-weight: bold;
+}
+.c-dccc{
+	color:var(--sig-color);
+	font-weight: bold;
+}
+.ml-minus-40{
+	margin-left:-40px;
+}
+.p-1_25{
+	padding: 0 1.25rem;
+}
+.aside_menu{
+	padding-left:0;
+}
+.aside_menu>div,.aside_menu>button{
+	width:calc(100% - 1.25rem);
+}
+.admin_mode{
+	color: white;
+    line-height: 37px;
+    width: 240px;
+    text-align: center;
+    font-weight: bolder;
+}

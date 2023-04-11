@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Booking-Mapper">
+
+	<select id="selectBookingViewList" resultType="bookingView" parameterType="str">
+		select
+		*
+		from bookingView
+		where mem_id=#{mem_id}
+	</select>
+	
+
+	<select id="selectBookingViewById" parameterType="str" resultType="bookingView">
+		select
+		*
+		from bookingView
+		where book_no=#{book_no}
+	</select>
+	
+
+	<update id="deleteBookingView" parameterType="str" >
+		delete
+		from booking
+		where
+		book_no=#{book_no}
+	</update>
+</mapper>

@@ -1,0 +1,77 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Freeboard-Mapper">
+  	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			where brd_title like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'c'.toString()">
+			where brd_content like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			where (
+			brd_title like '%'||#{keyword}||'%'
+			or
+			brd_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+  	
+  	<select id="selectSearchFreeboardList" resultType="freeboard">
+		select *
+    	from(
+	    	select rownum as rnum, SearchFreeboardResult.* 
+	    	from (
+		    	select * 
+				from freeboard
+				<include refid="search" />	
+				order by brd_no desc
+			) SearchFreeboardResult
+ 		  	
+				<![CDATA[
+	        where rownum <= #{endRow}
+	        )
+	        where rnum > #{startRow}]]>
+	</select>
+	
+	<select id="selectSearchFreeboardListCount" resultType="int">
+		select count(*) from freeboard
+		<include refid="search" />
+	</select>
+	
+	<update id="updateFreeboardViewCnt" parameterType="str">
+		update freeboard
+		set brd_viewcnt = brd_viewcnt + 1
+		where brd_no = #{no}
+	</update>
+	
+	<select id="selectFreeboardByNo" parameterType="str" resultType="freeboard">
+		select * from freeboard
+		where brd_no = #{no}
+	</select>
+	
+	<!-- <select id="selectFreeboardNextNo" resultType="str">
+		select 'FN'||to_char((to_number(max(substr(brd_no,3)))+1),'fm00000') from freeboard
+	</select>
+	 -->
+	<update id="insertFreeboard" parameterType="freeboard">
+		insert into freeboard
+		(brd_no,brd_title,brd_content,mem_id)
+		values
+		((select 'FN'||to_char((to_number(max(substr(brd_no,3)))+1),'fm00000') from freeboard),#{brd_title},#{brd_content},#{mem_id})
+	</update>
+	
+	<update id="modifyFreeboard" parameterType="freeboard">
+		update freeboard
+		set brd_title = #{brd_title},
+		brd_content = #{brd_content}
+		where brd_no = #{brd_no}
+	</update>
+	
+	<update id="deleteFreeboard" parameterType="str">
+		delete freeboard
+		where brd_no = #{no}
+	</update>
+  </mapper>

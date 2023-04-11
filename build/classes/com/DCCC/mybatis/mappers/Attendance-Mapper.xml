@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Attendance-Mapper">
+	<select id="selectAttendanceViewList" resultType="attendanceView" parameterType="str"> select * from attendanceView where prg_code=#{prg_code} </select>
+	<select id="selectAttendanceViewByCode" parameterType="str" resultType="attendanceView"> select * from attendanceView where prg_code=#{prg_code} </select>
+	
+	
+	<select id="selectAttendanceList" resultType="attendance">
+		select *
+		from attendance
+		where prg_code=#{prg_code}
+	</select>
+	
+	<select id="selectAttendancePeopleCount" parameterType="str" resultType="int">
+		select count(*)
+		from attendance
+		where prg_code=#{prg_code}
+	</select>
+	
+	<update id="insertAttendance" parameterType="attendance">
+		insert into attendance(mem_id, prg_code, att_status)
+		values(#{mem_id}, #{prg_code}, #{att_status})
+	</update>
+	
+	<update id="deleteAttendance" parameterType="str">
+		delete attendance
+		where mem_id=#{mem_id}
+	</update>
+	
+	<update id="deleteAttendanceForProgram" parameterType="str">
+		delete attendance
+		where prg_code=#{prg_code}
+	</update>
+
+</mapper>

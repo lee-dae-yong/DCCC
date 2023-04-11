@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="com/DCCC/properties/db.properties" />
+	
+	<typeAliases>
+		<typeAlias type="java.lang.String" alias="str" />
+		<typeAlias type="java.lang.Integer" alias="int" />
+		
+		<typeAlias type="com.DCCC.dto.MemberVO" alias="member"/>
+		<typeAlias type="com.DCCC.dto.AdminVO" alias="admin"/>
+		<typeAlias type="com.DCCC.dto.NoticeVO" alias="notice"/>
+		<typeAlias type="com.DCCC.dto.FreeboardVO" alias="freeboard"/>
+		<typeAlias type="com.DCCC.dto.SuggestionVO" alias="suggestion"/>
+		<typeAlias type="com.DCCC.dto.PhotoVO" alias="photo"/>
+		<typeAlias type="com.DCCC.dto.FacilityVO" alias="facility"/>
+		<typeAlias type="com.DCCC.dto.ReplyVO" alias="reply"/>
+		<typeAlias type="com.DCCC.dto.ProgramVO" alias="program"/>
+		<typeAlias type="com.DCCC.dto.ProgramDetailVO" alias="prg_detail"/>
+		<typeAlias type="com.DCCC.dto.AdminVO" alias="admin"/>
+		<typeAlias type="com.DCCC.dto.MemberVO" alias="member"/>
+		<typeAlias type="com.DCCC.dto.TeacherVO" alias="teacher"/>
+		<typeAlias type="com.DCCC.dto.AttendanceVO" alias="attendance"/>
+		<typeAlias type="com.DCCC.dto.AttendanceViewVO" alias="attendanceView"/>
+		<typeAlias type="com.DCCC.dto.BookingVO" alias="booking"/>
+		<typeAlias type="com.DCCC.dto.FacilityWithPriceViewVO" alias="facilitywithpriceview"/>
+		<typeAlias type="com.DCCC.dto.FacilityPriceVO" alias="facilityprice"/>
+		<typeAlias type="com.DCCC.dto.ReservationViewVO" alias="reservationView"/>
+		<typeAlias type="com.DCCC.dto.BookingViewVO" alias="bookingView"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${db.driverClassName}" />
+				<property name="url" value="${db.url}" />
+				<property name="username" value="${db.username}" />
+				<property name="password" value="${db.password}" />
+				
+				<!-- pool setting -->
+				<property value="4" name="poolMaximumActiveConnections"/>
+				<property value="4" name="poolMaximumIdleConnections"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="com/DCCC/mybatis/mappers/Session-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Notice-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Freeboard-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Suggestion-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Photo-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Main-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Reply-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Program-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/ProgramDetail-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Attendance-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Teacher-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Admin-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Member-Mapper.xml"/>
+		<mapper resource="com/DCCC/mybatis/mappers/Rental-Mapper.xml"/>
+		
+	<mapper resource="com/DCCC/mybatis/mappers/Facility-Mapper.xml"/>
+	<mapper resource="com/DCCC/mybatis/mappers/FacilityPrice-Mapper.xml"/>
+	<mapper resource="com/DCCC/mybatis/mappers/Reservation-Mapper.xml"/>
+	<mapper resource="com/DCCC/mybatis/mappers/Booking-Mapper.xml"/>
+	</mappers>
+
+</configuration>  

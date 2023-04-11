@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<!-- dataSource -->
+	<bean id="sqlSessionFactory"
+		class="com.DCCC.datasource.OracleMybatisSqlSessionFactory" />
+
+	<bean id="mainDAO" class="com.DCCC.dao.MainDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="sessionDAO" class="com.DCCC.dao.SessionDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="noticeDAO" class="com.DCCC.dao.NoticeDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="freeboardDAO" class="com.DCCC.dao.FreeboardDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="suggestionDAO" class="com.DCCC.dao.SuggestionDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="photoDAO" class="com.DCCC.dao.PhotoDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="replyDAO" class="com.DCCC.dao.ReplyDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="rentalDAO" class="com.DCCC.dao.RentalDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+
+
+	<bean id="mainService" class="com.DCCC.service.MainServiceImpl">
+		<property name="mainDAO" ref-value="mainDAO" />
+	</bean>
+	<bean id="sessionService"
+		class="com.DCCC.service.SessionServiceImpl">
+		<property name="sessionDAO" ref-value="sessionDAO" />
+	</bean>
+	<bean id="noticeService"
+		class="com.DCCC.service.NoticeServiceImpl">
+		<property name="noticeDAO" ref-value="noticeDAO" />
+	</bean>
+	<bean id="freeboardService"
+		class="com.DCCC.service.FreeboardServiceImpl">
+		<property name="freeboardDAO" ref-value="freeboardDAO" />
+		<property name="replyDAO" ref-value="replyDAO" />
+	</bean>
+	<bean id="suggestionService"
+		class="com.DCCC.service.SuggestionServiceImpl">
+		<property name="suggestionDAO" ref-value="suggestionDAO" />
+	</bean>
+	<bean id="photoService" class="com.DCCC.service.PhotoServiceImpl">
+		<property name="photoDAO" ref-value="photoDAO" />
+	</bean>
+	<bean id="replyService" class="com.DCCC.service.ReplyServiceImpl">
+		<property name="replyDAO" ref-value="replyDAO" />
+	</bean>
+
+
+
+	<bean id="programDAO" class="com.DCCC.dao.ProgramDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+	<bean id="programService"
+		class="com.DCCC.service.ProgramServiceImpl">
+		<property name="programDAO" ref-value="programDAO" />
+	</bean>
+	<bean id="attendanceDAO" class="com.DCCC.dao.AttendanceDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="attendanceService"
+		class="com.DCCC.service.AttendanceServiceImpl">
+		<property name="attendanceDAO" ref-value="attendanceDAO" />
+	</bean>
+
+	<bean id="programDetailDAO"
+		class="com.DCCC.dao.ProgramDetailDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="programDetailService"
+		class="com.DCCC.service.ProgramDetailServiceImpl">
+		<property name="programDetailDAO"
+			ref-value="programDetailDAO" />
+	</bean>
+
+
+
+
+
+		<bean id="facilitypriceDAO" class="com.DCCC.dao.FacilityPriceDAOImpl">
+			<property name="sqlSessionFactory" ref-value="sqlSessionFactory"/>
+		</bean>	
+	
+	<bean id="facilityDAO" class="com.DCCC.dao.FacilityDAOImpl">
+			<property name="sqlSessionFactory" ref-value="sqlSessionFactory"/>
+		</bean>	
+	
+	<bean id="teacherDAO" class="com.DCCC.dao.TeacherDAOImpl">
+			<property name="sqlSessionFactory" ref-value="sqlSessionFactory"/>
+		</bean>
+
+
+	<bean id="adminDAO" class="com.DCCC.dao.AdminDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="memberDAO" class="com.DCCC.dao.MemberDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="sessionDAO" class="com.DCCC.dao.SessionDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="attendanceViewDAO"
+		class="com.DCCC.dao.AttendanceViewDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="attendanceViewService"
+		class="com.DCCC.service.AttendanceViewServiceImpl">
+		<property name="attendanceViewDAO"
+			ref-value="attendanceViewDAO" />
+	</bean>
+
+	<bean id="sessionService"
+		class="com.DCCC.service.SessionServiceImpl">
+		<property name="sessionDAO" ref-value="sessionDAO" />
+	</bean>
+
+	<bean id="teacherService"
+		class="com.DCCC.service.TeacherServiceImpl">
+		<property name="teacherDAO" ref-value="teacherDAO" />
+	</bean>
+
+	<bean id="adminService" class="com.DCCC.service.AdminServiceImpl">
+		<property name="adminDAO" ref-value="adminDAO" />
+	</bean>
+
+	<bean id="memberService"
+		class="com.DCCC.service.MemberServiceImpl">
+		<property name="memberDAO" ref-value="memberDAO" />
+	</bean>
+	<bean id="facilityService"
+		class="com.DCCC.service.FacilityServiceImpl">
+		<property name="facilityDAO" ref-value="facilityDAO" />
+	</bean>
+	<bean id="rentalService"
+		class="com.DCCC.service.RentalServiceImpl">
+		<property name="rentalDAO" ref-value="rentalDAO" />
+	</bean>
+<bean id="facilitypriceService" class="com.DCCC.service.FacilityPriceServiceImpl">
+		<property name="facilitypriceDAO" ref-value="facilitypriceDAO"/>
+	</bean>
+	
+	<bean id="reservationViewDAO" class="com.DCCC.dao.ReservationViewDAOImpl">
+		<property name="sqlSessionFactory"
+			ref-value="sqlSessionFactory" />
+	</bean>
+
+
+
+	<bean id="reservationViewService" class="com.DCCC.service.ReservationViewServiceImpl">
+			<property name="reservationViewDAO" ref-value="reservationViewDAO" />
+		</bean>
+	<bean id="bookingViewDAO" class="com.DCCC.dao.BookingViewDAOImpl">
+			<property name="sqlSessionFactory"
+				ref-value="sqlSessionFactory" />
+	</bean>
+	
+	
+	
+	<bean id="bookingViewService" class="com.DCCC.service.BookingViewServiceImpl">
+			<property name="bookingViewDAO" ref-value="bookingViewDAO" />
+	</bean>
+</beans>	

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Program-Mapper">
+	<sql id="prg_search">
+		
+		<if test="searchType=='d'.toString()"><!-- 요일로 검색하기 -->
+			and prg_day like'%'||#{prg_day}||'%'
+		</if>
+
+		<if test="searchType=='s'.toString()"><!--과목 검색-->
+			and prg_kind=#{prg_kind}
+		</if>
+		
+		<if test="searchType=='t'.toString()">
+			and prg_time like '%'||#{prg_time}||'%'
+		</if><!-- 시간별로 검색 -->
+		
+		<if test="searchType=='ds'.toString()">
+			and prg_day like'%'||#{prg_day}||'%'
+			and prg_kind=#{prg_kind}
+		</if>
+		<if test="searchType=='dt'.toString()">
+			and prg_day like'%'||#{prg_day}||'%'
+			and prg_time like '%'||#{prg_time}||'%'
+		</if>
+		<if test="searchType=='st'.toString()">
+			and prg_kind=#{prg_kind}
+			and prg_time like '%'||#{prg_time}||'%'
+		</if>
+		<if test="searchType=='dst'.toString()">
+			and prg_day like'%'||#{prg_day}||'%'
+			and prg_kind=#{prg_kind}
+			and prg_time like '%'||#{prg_time}||'%'
+		</if>
+		
+		
+	</sql>
+	
+	<select id="selectSearchProgramList"  resultType="program">
+		select *
+		from program
+		where prg_code is not null
+		<include refid="prg_search"/>
+		
+	</select>
+	
+	<select id="selectSearchProgram" resultType="program" parameterType="str">
+		select *
+		from program
+		where prg_code=#{prg_code}
+	</select>
+	
+	<update id="insertProgram" parameterType="program">
+		insert into program(prg_code, prg_name, prg_time, prg_capacity, prg_day, prg_price, tch_id, prg_picture, prg_kind)
+		values(#{prg_code}, #{prg_name}, #{prg_time}, #{prg_capacity}, #{prg_day}, #{prg_price}, #{tch_id}, #{prg_picture},#{prg_kind})
+		
+	</update>
+	
+	<update id="updateProgram" parameterType="program">
+		update program
+		set
+		prg_kind=#{prg_kind}, prg_name=#{prg_name}, prg_time=#{prg_time}, prg_capacity=#{prg_capacity}, prg_day=#{prg_day}, prg_price=#{prg_price}, prg_picture=#{prg_picture} ,tch_id=#{tch_id}
+		where prg_code=#{prg_code}
+	</update>
+	
+	<update id="deleteProgram" parameterType="str">
+		delete program
+		where prg_code=#{prg_code}
+	
+	</update>
+	<select id="selectProgramKind" resultType="str">
+		
+		select distinct PRG_KIND
+		from program
+		
+	</select>
+	
+	<select id="createPrg_code" resultType="str">
+		SELECT 'PRG' || to_char(TO_NUMBER(NVL(MAX(SUBSTR(prg_code, 4)), 0)) + 1, 'fm0000')
+        FROM program
+            
+	</select>
+	
+	
+	
+</mapper>

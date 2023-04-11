@@ -1,0 +1,63 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Photo-Mapper">
+  	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			where pho_title like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'c'.toString()">
+			where pho_content like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			where (
+			pho_title like '%'||#{keyword}||'%'
+			or
+			pho_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+  	
+  	<select id="selectSearchPhotoList" resultType="photo">
+		select * from photo
+		<include refid="search" />	
+		order by pho_no desc
+	</select>
+	
+	<select id="selectSearchPhotoListCount" resultType="int">
+		select count(*) from photo
+		<include refid="search" />
+	</select>
+	<update id="insertPhoto" parameterType="photo">
+		insert into photo
+		(pho_no,pho_title,pho_content,adm_id)
+		values
+		((select 'PH'||to_char((to_number(max(substr(pho_no,3)))+1),'fm00000') from photo),#{pho_title},#{pho_content},#{adm_id})
+	</update>
+	
+	<update id="updatePhotoViewCnt" parameterType="str">
+		update photo
+		set pho_viewcnt = pho_viewcnt + 1
+		where pho_no = #{no}
+	</update>
+	
+	<select id="selectPhotoByNo" parameterType="str" resultType="photo">
+		select * from photo
+		where pho_no = #{no}
+	</select>
+	
+	
+	<update id="updatePhoto" parameterType="photo">
+		update photo
+		set pho_title = #{pho_title},
+		pho_content = #{pho_content}
+		where pho_no = #{pho_no}
+	</update>
+	
+	<update id="deletePhoto" parameterType="str">
+		delete photo
+		where pho_no = #{no}
+	</update>
+	
+  </mapper>

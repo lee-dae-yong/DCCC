@@ -1,0 +1,26 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Main-Mapper">
+  	
+  	<select id="selectNoticeListForMain" resultType="notice">
+		select * from notice
+		<![CDATA[ where rownum < 6 ]]>  
+		order by ntc_no desc
+	</select>
+	<select id="selectPhotoListForMain" resultType="photo">
+		select * from photo
+		<![CDATA[where rownum < 3]]>
+		order by pho_no desc
+	</select>
+	<select id="selectFacilityListForMain" resultType="facility">
+		select * from facility
+	where fac_kind = 1
+	and (fac_name='족구장'
+	or fac_name='배드민턴장'
+	or fac_name='수영장'
+	or fac_name='피트니스룸')
+	</select>
+	
+  </mapper>

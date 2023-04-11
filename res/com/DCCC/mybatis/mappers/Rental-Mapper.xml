@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Rental-Mapper">
+	
+	<select id="selectFacilityList" resultType="facility">
+		select * from facility
+		where fac_kind=1
+	</select>
+	
+	<select id="selectFacilityListByFacName" resultType="facility" parameterType="str">
+		select * from facility
+		where fac_kind = 2
+		and fac_name like '%'||#{fac_name}||'%'
+	</select>
+	
+	<select id="selectBookingList" resultType="booking">
+		select * from booking
+		where fac_no = #{fac_no}
+		and book_date=#{book_date}
+	</select>
+	
+	<select id="selectBookingDuple" resultType="int">
+		select count(*) from booking
+		where book_date=#{book_date}
+		and mem_id=#{member_id}
+	</select>
+	
+	<select id="selectBookingSeq" resultType="int">
+		select book_seq.nextval from dual
+	</select>
+	
+	<update id="insertRental">
+		insert into booking
+		(book_no, mem_id, fac_no, book_date, book_time)
+		values
+		(#{book_no}, #{member_id}, #{facility_no}, #{book_date}, #{book_time})
+	</update>
+</mapper>

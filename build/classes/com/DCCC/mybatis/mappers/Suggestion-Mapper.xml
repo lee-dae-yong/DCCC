@@ -1,0 +1,72 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Suggestion-Mapper">
+  	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			where sug_title like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'c'.toString()">
+			where sug_content like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			where (
+			sug_title like '%'||#{keyword}||'%'
+			or
+			sug_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+  	
+  	<select id="selectSearchSuggestionList" resultType="suggestion">
+		select * from suggestion
+		<include refid="search" />	
+		order by sug_no desc
+	</select>
+	
+	<select id="selectSearchSuggestionListCount" resultType="int">
+		select count(*) from suggestion
+		<include refid="search" />
+	</select>
+	
+	<update id="updateSuggestionViewCnt" parameterType="str">
+		update suggestion
+		set sug_viewcnt = sug_viewcnt + 1
+		where sug_no = #{no}
+	</update>
+	
+	<select id="selectSuggestionByNo" parameterType="str" resultType="suggestion">
+		select * from suggestion
+		where sug_no = #{no}
+	</select>
+	<update id="insertSuggestion" parameterType="suggestion">
+		insert into suggestion
+		(sug_no,sug_title,sug_content,mem_id,sug_rock)
+		values
+		((select 'N'||to_char((to_number(max(substr(sug_no,2)))+1),'fm00000') from suggestion),#{sug_title},#{sug_content},#{mem_id},#{sug_rock})
+	</update>
+	
+	<update id="modifySuggestion" parameterType="suggestion">
+		update suggestion
+		set sug_title = #{sug_title},
+		sug_content = #{sug_content},
+		sug_rock = #{sug_rock}
+		where sug_no = #{sug_no}
+	</update>
+	
+	<update id="deleteSuggestion" parameterType="str">
+		delete suggestion
+		where sug_no = #{no}
+	</update>
+	
+	<update id="updateSuggestionByAdmin" parameterType="suggestion">
+		update suggestion
+		set sug_title = #{sug_title},
+		sug_content = #{sug_content},
+		sug_replyContent = #{sug_replyContent},
+		adm_id = #{adm_id},
+		sug_replyRegDate = sysdate
+		where sug_no = #{sug_no}
+	</update>
+  </mapper>

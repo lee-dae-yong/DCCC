@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Teacher-Mapper">
+
+	<sql id="search">
+		<if test="searchType == 'i'.toString()">
+			and tch_id like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'p'.toString()">
+			and tch_phone like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'n'.toString()">
+			and tch_name like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+	
+
+	<select id="selectTeacherById" resultType="teacher" parameterType="str">
+		select *
+		from teacher
+		where tch_id=#{tch_id}
+	</select>
+	
+	<select id="selectSearchTeacherList" resultType="teacher">
+		select
+		*
+		from teacher
+		where tch_id is not null
+		<include refid="search" />
+		order by tch_regDate desc
+	</select>
+	
+	<select id="selectSearchTeacherWithPrg" resultType="str">
+		select 
+		* 
+		from program 
+		where tch_id='teacher#{tch_id}';
+	</select>
+	
+	<select id="selectSearchTeacherListCount" resultType="int">
+		select
+		count(*)
+		from teacher
+		where tch_id is not null
+		<include refid="search" />
+		order by tch_regDate desc
+	</select>
+	
+	<update id="insertTeacher" parameterType="teacher">
+		insert into
+		teacher(tch_picture, tch_id, tch_pwd, tch_name, tch_phone, tch_license)
+		values(#{tch_picture},#{tch_id},#{tch_pwd},#{tch_name},#{tch_phone},#{tch_license})
+	</update>
+	
+	<update id="updateTeacher" parameterType="teacher">
+		update teacher
+		set
+		tch_picture=#{tch_picture}, tch_pwd=#{tch_pwd}, tch_phone=#{tch_phone},
+		tch_name=#{tch_name}, tch_license=#{tch_license}
+		where tch_id=#{tch_id}
+	</update>
+	
+	<update id="deleteTeacher" parameterType="str">
+		delete
+		from teacher
+		where
+		tch_id=#{tch_id, jdbcType=VARCHAR}
+	</update>
+
+</mapper>

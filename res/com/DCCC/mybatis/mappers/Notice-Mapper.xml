@@ -1,0 +1,75 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Notice-Mapper">
+  	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			where ntc_title like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'c'.toString()">
+			where ntc_content like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			where (
+			ntc_title like '%'||#{keyword}||'%'
+			or
+			ntc_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+  	
+  	<select id="selectSearchNoticeList" resultType="notice">
+		select *
+    	from(
+	    	select rownum as rnum, SearchNoticeResult.* 
+	    	from (
+		    	select * 
+				from notice
+				<include refid="search" />	
+				<![CDATA[order by case when sysdate <= ntc_enddate then case when ntc_startdate <= sysdate then ntc_enddate end end,ntc_no desc
+			) SearchNoticeResult
+ 		  	
+	        where rownum <= #{endRow}
+	        )
+	        where rnum > #{startRow}]]>
+	</select>
+	
+	<select id="selectSearchNoticeListCount" resultType="int">
+		select count(*) from notice
+		<include refid="search" />
+		<![CDATA[order by case when sysdate <= ntc_enddate then case when ntc_startdate <= sysdate then ntc_enddate end end,ntc_no desc]]>
+	</select>
+	
+	<update id="updateNoticeViewCnt" parameterType="str">
+		update notice
+		set ntc_viewcnt = ntc_viewcnt + 1
+		where ntc_no = #{no}
+	</update>
+	
+	<select id="selectNoticeByNo" parameterType="str" resultType="notice">
+		select * from notice
+		where ntc_no = #{no}
+	</select>
+	
+	<update id="insertNotice" parameterType="notice">
+		insert into notice
+		(ntc_no,ntc_title,ntc_content,adm_id,ntc_startDate,ntc_endDate)
+		values
+		((select 'N'||to_char((to_number(max(substr(ntc_no,2)))+1),'fm00000') from notice),#{ntc_title},#{ntc_content},#{adm_id},#{ntc_startDate},#{ntc_endDate})
+	</update>
+	
+	<update id="updateNotice" parameterType="notice">
+		update notice
+		set ntc_content = #{ntc_content},
+		ntc_title = #{ntc_title},
+		ntc_startDate = #{ntc_startDate},
+		ntc_endDate = #{ntc_endDate}
+		where ntc_no = #{ntc_no}
+	</update>
+	
+	<update id="deleteNotice" parameterType="str">
+		delete notice
+		where ntc_no =#{no}
+	</update>
+  </mapper>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="FacilityWithPriceView-Mapper">
+	<select id="selectFacilityWithPriceView" resultType="facilitywithpriceview" parameterType="str">
+		select *
+		from facilitywithpriceview
+		where fac_no=#{fac_no}
+	</select>
+</mapper>
